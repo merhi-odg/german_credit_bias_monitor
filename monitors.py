@@ -26,7 +26,7 @@ def metrics(data):
     df_baseline = pd.read_json('df_baseline_scored.json', orient='records', lines=True)
     
     if 'label_value' in df_baseline.columns and 'label' not in df_baseline.columns:
-        df_baseline.remame(
+        df_baseline.rename(
             columns={'label_value': 'label'},
             inplace=True
         )
