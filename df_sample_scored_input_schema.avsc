@@ -195,7 +195,7 @@
         "protected_class": false,
         "drift_candidate": true,
         "special_values": [],
-        "name": "label"
+        "name": "label_value"
     },
     {
         "type": "int",
