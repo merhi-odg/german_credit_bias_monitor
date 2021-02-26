@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 import pickle
-from moc_monitors import BiasMonitor, DriftDetector
+from moc_monitors import BiasMonitor
 from moc_schema_infer import set_detector_parameters
 
 
@@ -37,27 +37,12 @@ def metrics(data):
     
     print(data.columns, flush=True)
     
-    detector_parameters = set_detector_parameters(schema)
-    
-    drift_detector=DriftDetector(
-        df_baseline=df_baseline, 
-        df_sample=data, 
-        categorical_columns=detector_parameters["categorical_columns"], 
-        numerical_columns=detector_parameters["numerical_columns"], 
-        score_column=detector_parameters["score_column"][0], 
-        label_column=detector_parameters["label_column"][0]
-    )
-    
-    output = drift_detector.calculate_drift(
-        pre_defined_metric='jensen-shannon',
-        user_defined_metric=None
-    )
-    
+    monitor_parameters = set_detector_parameters(schema)
     
     bias_montior = BiasMonitor(
         df=data,
-        score_column=detector_parameters["score_column"][0],
-        label_column=detector_parameters["label_column"][0],
+        score_column=monitor_parameters["score_column"][0],
+        label_column=monitor_parameters["label_column"][0],
         protected_class='gender',
         reference_group='male'
     )
