@@ -1,4 +1,4 @@
-# monitors
+# german_credit_bias_monitor
 
 A Bias monitor to be used with the scoring model german_credit_python https://github.com/merhi-odg/german_credit_python
 
